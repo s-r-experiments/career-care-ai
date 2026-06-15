@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Upload, ArrowRight, Download, Lock, CheckCircle, Loader2, AlertCircle } from 'lucide-react'
 
@@ -250,10 +250,10 @@ function ProcessingStep() {
   ]
   const [stage, setStage] = useState(0)
 
-  useState(() => {
+  useEffect(() => {
     const iv = setInterval(() => setStage(s => Math.min(s + 1, stages.length - 1)), 2800)
     return () => clearInterval(iv)
-  })
+  }, [])
 
   return (
     <div className="fade-in text-center py-12">
