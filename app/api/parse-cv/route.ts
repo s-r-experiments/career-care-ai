@@ -12,8 +12,8 @@ export async function POST(req: NextRequest) {
     let text = ''
 
     if (file.name.toLowerCase().endsWith('.pdf')) {
-      // Dynamic import to avoid Next.js static analysis issues with pdf-parse
-      const pdfParse = (await import('pdf-parse/lib/pdf-parse.js')).default
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const pdfParse = require('pdf-parse')
       const data = await pdfParse(buffer)
       text = data.text
     } else if (file.name.toLowerCase().match(/\.docx?$/)) {
